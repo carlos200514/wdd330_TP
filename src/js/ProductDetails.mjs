@@ -32,37 +32,29 @@ export default class ProductDetails {
     const product = this.product;
 
     document.querySelector('.product-detail').innerHTML = `
-      <h3>${product.Brand.Name}</h3>
-      <h2 class="divider">${product.NameWithoutBrand}</h2>
+    <h3>${product.Brand.Name}</h3>
 
-      <img
-        class="divider"
-        src="${product.Images.PrimaryLarge}"
-        alt="${product.Name}"
-      />
+    <h2 class="divider">${product.NameWithoutBrand}</h2>
 
-      <p class="product-card__price">$${product.FinalPrice}</p>
+    <img
+      class="divider"
+      src="${product.Image}"
+      alt="${product.Name}"
+    />
 
-      <p class="product__color">${product.Colors[0].ColorName}</p>
+    <p class="product-card__price">$${product.FinalPrice}</p>
 
-      <p class="product__description">
-        ${product.DescriptionHtmlSimple}
-      </p>
+    <p class="product__color">
+      ${product.Colors[0].ColorName}
+    </p>
 
-      <div class="product-detail__add">
-        <button id="addToCart">Add to Cart</button>
-      </div>
+    <p class="product__description">
+      ${product.DescriptionHtmlSimple}
+    </p>
 
-      <ul class="product-detail__list">
-        <li class="product-detail__item">
-          <b>Features</b>
-          <ul>
-            ${product.Features.map(
-              (feature) => `<li>${feature}</li>`
-            ).join('')}
-          </ul>
-        </li>
-      </ul>
-    `;
+    <div class="product-detail__add">
+      <button id="addToCart">Add to Cart</button>
+    </div>
+  `;
   }
 }
