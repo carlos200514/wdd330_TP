@@ -241,6 +241,12 @@ button {
   grid-column: 3;
 }
 
+.remove-item {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
