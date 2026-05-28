@@ -1,4 +1,8 @@
-import { setLocalStorage, getLocalStorage } from './utils.mjs';
+import {
+  qs,
+  getLocalStorage,
+  setLocalStorage,
+} from "./utils.mjs";
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -29,32 +33,37 @@ export default class ProductDetails {
   }
 
   renderProductDetails() {
-    const product = this.product;
+    const element = qs(".product-detail");
 
-    document.querySelector('.product-detail').innerHTML = `
-    <h3>${product.Brand.Name}</h3>
+    element.innerHTML = `
+      <img
+        class="divider"
+        src="${this.product.Images.PrimaryLarge}"
+        alt="${this.product.Name}"
+      />
 
-    <h2 class="divider">${product.NameWithoutBrand}</h2>
+      <section class="product-card__detail">
+        <h3>${this.product.Brand.Name}</h3>
 
-    <img
-      class="divider"
-      src="${product.Image}"
-      alt="${product.Name}"
-    />
+        <h2 class="divider">${this.product.Name}</h2>
 
-    <p class="product-card__price">$${product.FinalPrice}</p>
+        <p class="product-card__price">$
+          $${this.product.FinalPrice}
+        </p>
+        <p class="product__color">
+          ${this.product.Colors[0].ColorName}
+        </p>
 
-    <p class="product__color">
-      ${product.Colors[0].ColorName}
-    </p>
+        <p class="product__description">
+          ${this.product.DescriptionHtmlSimple}
+        </p>
 
-    <p class="product__description">
-      ${product.DescriptionHtmlSimple}
-    </p>
-
-    <div class="product-detail__add">
-      <button id="addToCart">Add to Cart</button>
-    </div>
-  `;
+        <div class="product-detail__add">
+          <button id="addToCart" data-id="${this.product.Id}">
+            Add to Cart
+          </button>
+        </div>
+      </section>
+    `;
   }
 }
