@@ -19,19 +19,19 @@ function cartItemTemplate(item) {
     <li class="cart-card divider">
       <a href="#" class="cart-card__image">
         <img
-          src="${item.Images.PrimaryMedium}"
-          alt="${item.Name}"
+          src="${item.Images?.PrimaryMedium || "../images/placeholder.jpg"}"
+          alt="${item.Name || "Product image"}"
         />
       </a>
 
       <a href="#">
         <h2 class="card__name">
-          ${item.Name}
+          ${item.Name || "Unnamed Product"}
         </h2>
       </a>
 
       <p class="cart-card__color">
-        ${item.Colors[0].ColorName}
+        ${item.Colors?.[0]?.ColorName || "No color"}
       </p>
 
       <p class="cart-card__quantity">
@@ -39,7 +39,7 @@ function cartItemTemplate(item) {
       </p>
 
       <p class="cart-card__price">
-        $${item.FinalPrice}
+        $${item.FinalPrice || 0}
       </p>
 
       <button
