@@ -3,7 +3,7 @@ import ProductList from "./ProductList.mjs";
 
 import { loadHeaderFooter, getParam } from "./utils.mjs";
 
-loadHeaderFooter("../partials/");
+loadHeaderFooter();
 
 const category = getParam("category");
 

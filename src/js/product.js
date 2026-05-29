@@ -3,7 +3,7 @@ import ProductDetails from "./ProductDetails.mjs";
 
 import { loadHeaderFooter, getParam } from "./utils.mjs";
 
-loadHeaderFooter("../partials/");
+loadHeaderFooter();
 
 const productId = getParam("product");
 

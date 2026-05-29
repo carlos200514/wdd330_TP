@@ -65,7 +65,7 @@ async function loadTemplate(path) {
   return html;
 }
 
-export async function loadHeaderFooter(pathToPartials = "../partials/") {
+export async function loadHeaderFooter(pathToPartials = "/partials/") {
   const header = await loadTemplate(
     `${pathToPartials}header.html`
   );
