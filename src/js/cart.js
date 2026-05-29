@@ -74,6 +74,6 @@ function removeItem(event) {
   renderCartContents();
 }
 
-loadHeaderFooter();
+loadHeaderFooter("../partials/");
 
 renderCartContents();
