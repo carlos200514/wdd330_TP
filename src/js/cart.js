@@ -12,6 +12,7 @@ function renderCartContents() {
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 
   addRemoveButtons();
+  addQuantityListeners();
 }
 
 function cartItemTemplate(item) {
@@ -35,11 +36,18 @@ function cartItemTemplate(item) {
       </p>
 
       <p class="cart-card__quantity">
-        qty: 1
+       qty:
+       <input
+         type="number"
+         min="1"
+         value="${item.quantity || 1}"
+         class="cart-qty"
+         data-id="${item.Id}"
+       >
       </p>
 
       <p class="cart-card__price">
-        $${item.FinalPrice || 0}
+        $${(item.FinalPrice * (item.quantity || 1)).toFixed(2)}
       </p>
 
       <button
@@ -60,6 +68,32 @@ function addRemoveButtons() {
   buttons.forEach((button) => {
     button.addEventListener("click", removeItem);
   });
+}
+
+function addQuantityListeners() {
+  const quantityInputs = document.querySelectorAll(".cart-qty");
+
+  quantityInputs.forEach((input) => {
+    input.addEventListener("change", updateQuantity);
+  });
+}
+
+function updateQuantity(event) {
+  const productId = event.target.dataset.id;
+  const newQuantity = parseInt(event.target.value);
+
+  let cartItems = getLocalStorage("so-cart") || [];
+
+  cartItems = cartItems.map((item) => {
+    if (item.Id == productId) {
+      item.quantity = newQuantity;
+    }
+    return item;
+  });
+
+  setLocalStorage("so-cart", cartItems);
+
+  renderCartContents();
 }
 
 function removeItem(event) {
